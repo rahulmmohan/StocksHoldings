@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {
   ActivityIndicator,
+  Button,
   FlatList,
   SafeAreaView,
   StyleSheet,
+  Text,
   View,
 } from 'react-native';
 import StocksRepo from '../api/StocksRepo';
@@ -194,6 +196,7 @@ const data = {
 };
 const StockHoldingsScreen = (): React.JSX.Element => {
   const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
   const [holdings, setHoldings] = useState<ComputedUserHolding[]>([]);
   const [holdingSummary, setHoldingSummary] = useState({
     totalInvestment: 0,
@@ -204,12 +207,11 @@ const StockHoldingsScreen = (): React.JSX.Element => {
   const [isSummaryExpanded, setSummaryExpanded] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => {
-      getStocks();
-    }, 2000);
+    getStocks();
   }, []);
 
   const getStocks = () => {
+    setIsLoading(true);
     StocksRepo.getStocksHoldings().then(res => {
       console.log(res);
     });
@@ -227,7 +229,10 @@ const StockHoldingsScreen = (): React.JSX.Element => {
       todaysTotalPandL,
       totalCurrentValue,
     });
-    setIsLoading(false);
+    setTimeout(() => {
+      setIsLoading(false);
+      setIsError(false);
+    }, 2000);
   };
 
   const toggleView = () => {
@@ -235,6 +240,18 @@ const StockHoldingsScreen = (): React.JSX.Element => {
   };
 
   const renderSeparator = () => <View style={styles.separator} />;
+
+  const errorView = () => (
+    <View style={styles.errorView}>
+      <Text style={styles.errorText}>Something went wrong!</Text>
+      <Button
+        title="Try Again"
+        onPress={() => {
+          getStocks();
+        }}
+      />
+    </View>
+  );
 
   return (
     <SafeAreaView>
@@ -246,6 +263,8 @@ const StockHoldingsScreen = (): React.JSX.Element => {
             color={'black'}
             animating={isLoading}
           />
+        ) : isError ? (
+          errorView()
         ) : (
           <>
             <FlatList
@@ -281,6 +300,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  errorView: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  errorText: {fontSize: 16, marginBottom: 8},
 });
 
 export default StockHoldingsScreen;

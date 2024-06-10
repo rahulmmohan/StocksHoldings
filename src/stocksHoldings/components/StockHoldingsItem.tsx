@@ -35,23 +35,29 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '800',
     marginBottom: 8,
+    color: 'black',
   },
   quantity: {
     fontSize: 13,
+    color: 'black',
   },
   ltp: {
     fontSize: 13,
+    color: 'black',
   },
   ltpValue: {
     fontSize: 13,
     fontWeight: '600',
+    color: 'black',
   },
   pl: {
     fontSize: 13,
+    color: 'black',
   },
   plValue: {
     fontSize: 13,
     fontWeight: '600',
+    color: 'black',
   },
 });
 

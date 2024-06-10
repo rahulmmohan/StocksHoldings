@@ -79,9 +79,11 @@ const styles = StyleSheet.create({
   summaryTitle: {
     fontSize: 14,
     fontWeight: '800',
+    color: 'black',
   },
   summaryValue: {
     fontSize: 14,
+    color: 'black',
   },
 });
 
