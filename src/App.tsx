@@ -2,16 +2,16 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 import StockHoldings from './stocksHoldings/screens/StockHoldingsScreen';
-import {Text} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 const Stack = createNativeStackNavigator();
 
-function LogoTitle() {
+const Header = props => {
   return (
-    <Text style={{backgroundColor: 'red', alignSelf: 'flex-start'}}>
-      Upstox Holdings
-    </Text>
+    <View>
+      <Text style={styles.headerText}>{props.name}</Text>
+    </View>
   );
-}
+};
 
 function App(): React.JSX.Element {
   return (
@@ -20,11 +20,24 @@ function App(): React.JSX.Element {
         <Stack.Screen
           name="StockHoldings"
           component={StockHoldings}
-          options={{headerTitle: props => <LogoTitle {...props} />}}
+          options={{
+            title: '',
+            headerLeft: () => <Header name="Upstox Holding" />,
+            headerStyle: {
+              backgroundColor: 'rgb(114,20,121)',
+            },
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
+const styles = StyleSheet.create({
+  headerText: {
+    fontWeight: 'bold',
+    fontSize: 16,
+    color: 'white',
+  },
+});
 
 export default App;
