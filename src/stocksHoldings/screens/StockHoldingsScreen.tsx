@@ -1,5 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {FlatList, SafeAreaView, StyleSheet, View} from 'react-native';
+import {
+  ActivityIndicator,
+  FlatList,
+  SafeAreaView,
+  StyleSheet,
+  View,
+} from 'react-native';
 import StocksRepo from '../api/StocksRepo';
 import {ComputedUserHolding} from '../types';
 import StockHoldingsItem from '../components/StockHoldingsItem';
@@ -187,6 +193,7 @@ const data = {
   },
 };
 const StockHoldingsScreen = (): React.JSX.Element => {
+  const [isLoading, setIsLoading] = useState(true);
   const [holdings, setHoldings] = useState<ComputedUserHolding[]>([]);
   const [holdingSummary, setHoldingSummary] = useState({
     totalInvestment: 0,
@@ -197,7 +204,9 @@ const StockHoldingsScreen = (): React.JSX.Element => {
   const [isSummaryExpanded, setSummaryExpanded] = useState(false);
 
   useEffect(() => {
-    getStocks();
+    setTimeout(() => {
+      getStocks();
+    }, 2000);
   }, []);
 
   const getStocks = () => {
@@ -218,6 +227,7 @@ const StockHoldingsScreen = (): React.JSX.Element => {
       todaysTotalPandL,
       totalCurrentValue,
     });
+    setIsLoading(false);
   };
 
   const toggleView = () => {
@@ -229,17 +239,28 @@ const StockHoldingsScreen = (): React.JSX.Element => {
   return (
     <SafeAreaView>
       <View style={styles.container}>
-        <FlatList
-          data={holdings}
-          renderItem={({item}) => <StockHoldingsItem item={item} />}
-          keyExtractor={item => item.symbol}
-          ItemSeparatorComponent={renderSeparator}
-        />
-        <StockHoldingsSummary
-          holdingSummary={holdingSummary}
-          isSummaryExpanded={isSummaryExpanded}
-          toggleView={toggleView}
-        />
+        {isLoading ? (
+          <ActivityIndicator
+            size="large"
+            style={styles.loading}
+            color={'black'}
+            animating={isLoading}
+          />
+        ) : (
+          <>
+            <FlatList
+              data={holdings}
+              renderItem={({item}) => <StockHoldingsItem item={item} />}
+              keyExtractor={item => item.symbol}
+              ItemSeparatorComponent={renderSeparator}
+            />
+            <StockHoldingsSummary
+              holdingSummary={holdingSummary}
+              isSummaryExpanded={isSummaryExpanded}
+              toggleView={toggleView}
+            />
+          </>
+        )}
       </View>
     </SafeAreaView>
   );
@@ -248,9 +269,18 @@ const StockHoldingsScreen = (): React.JSX.Element => {
 const styles = StyleSheet.create({
   container: {
     height: '100%',
-    backgroundColor: 'white',
+    backgroundColor: '#cccccc',
   },
   separator: {height: 1, marginHorizontal: 16, backgroundColor: '#ddd'},
+  loading: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });
 
 export default StockHoldingsScreen;
