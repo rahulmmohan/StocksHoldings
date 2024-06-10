@@ -9,7 +9,7 @@ const StockHoldingsItem = ({item}: {item: ComputedUserHolding}) => (
       <Text style={styles.quantity}>{item.quantity}</Text>
     </View>
     <View style={styles.rightContainer}>
-      <View style={styles.valueContainer}>
+      <View style={[styles.valueContainer, {marginBottom: 8}]}>
         <Text style={styles.ltp}>LTP: </Text>
         <Text style={styles.ltpValue}>{`₹ ${item.ltp}`}</Text>
       </View>
@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
   symbol: {
     fontSize: 14,
     fontWeight: '800',
+    marginBottom: 8,
   },
   quantity: {
     fontSize: 13,

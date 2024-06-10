@@ -35,10 +35,7 @@ const StockHoldingsSummary = ({
       </Text>
     </TouchableOpacity>
     <View
-      style={[
-        {paddingHorizontal: 16},
-        {height: isSummaryExpanded ? 'auto' : 0},
-      ]}>
+      style={[styles.summaryView, {height: isSummaryExpanded ? 'auto' : 0}]}>
       <View style={[styles.summaryItem, {marginTop: 16}]}>
         <Text style={styles.summaryTitle}>Current Value: </Text>
         <Text
@@ -72,16 +69,8 @@ const StockHoldingsSummary = ({
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#efefef',
-    borderTopLeftRadius: 16,
-    borderTopRightRadius: 16,
   },
-  item: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    backgroundColor: 'white',
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-  },
+  summaryView: {paddingHorizontal: 16},
   summaryItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
