@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
   expandArrow: {width: 32, height: 32, tintColor: 'rgb(114,20,121)'},
   expandButton: {
     height: 32,
-    paddingTop: 12,
+    paddingVertical: 12,
     alignItems: 'center',
     justifyContent: 'center',
   },
