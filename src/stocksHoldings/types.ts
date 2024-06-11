@@ -16,3 +16,14 @@ export type ComputedUserHolding = {
   currentValue: number;
   investmentValue: number;
 };
+
+export type SummaryViewProps = {
+  holdingSummary: {
+    totalInvestment: number;
+    totalPandL: number;
+    todaysTotalPandL: number;
+    totalCurrentValue: number;
+  };
+  isSummaryExpanded: boolean;
+  toggleView: () => void;
+};

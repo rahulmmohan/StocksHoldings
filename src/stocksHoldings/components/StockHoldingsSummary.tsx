@@ -1,76 +1,70 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  ViewStyle,
+} from 'react-native';
+import {SummaryViewProps} from '../types';
 
 const StockHoldingsSummary = ({
   holdingSummary,
   isSummaryExpanded,
   toggleView,
-}: {
-  holdingSummary: {
-    totalInvestment: number;
-    totalPandL: number;
-    todaysTotalPandL: number;
-    totalCurrentValue: number;
+}: SummaryViewProps) => {
+  const getSummaryItem = (
+    title: string,
+    value: number,
+    style: ViewStyle = {},
+  ) => {
+    return (
+      <View style={[styles.summaryItem, style]}>
+        <Text style={styles.summaryTitle}>{title}</Text>
+        <Text style={styles.summaryValue}>{`₹ ${value}`}</Text>
+      </View>
+    );
   };
-  isSummaryExpanded: boolean;
-  toggleView: () => void;
-}) => (
-  <View style={styles.container}>
-    <TouchableOpacity
-      style={{
-        height: 32,
-        paddingTop: 12,
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-      onPress={toggleView}>
-      <Text
-        style={{
-          fontSize: 24,
-          fontWeight: 800,
-          lineHeight: 24,
-          textAlignVertical: 'center',
-        }}>
-        ^
-      </Text>
-    </TouchableOpacity>
-    <View
-      style={[styles.summaryView, {height: isSummaryExpanded ? 'auto' : 0}]}>
-      <View style={[styles.summaryItem, {marginTop: 16}]}>
-        <Text style={styles.summaryTitle}>Current Value: </Text>
-        <Text
-          style={
-            styles.summaryValue
-          }>{`₹ ${holdingSummary.totalCurrentValue}`}</Text>
-      </View>
-      <View style={styles.summaryItem}>
-        <Text style={styles.summaryTitle}>Total Investment: </Text>
-        <Text
-          style={
-            styles.summaryValue
-          }>{`₹ ${holdingSummary.totalInvestment}`}</Text>
-      </View>
-      <View style={styles.summaryItem}>
-        <Text style={styles.summaryTitle}>Today's Profit & Loss: </Text>
-        <Text
-          style={
-            styles.summaryValue
-          }>{`₹ ${holdingSummary.todaysTotalPandL}`}</Text>
-      </View>
-      <View style={[styles.summaryItem, {marginTop: 12, marginBottom: 24}]}>
-        <Text style={styles.summaryTitle}>Profit & Loss: </Text>
-        <Text
-          style={styles.summaryValue}>{`₹ ${holdingSummary.totalPandL}`}</Text>
+  return (
+    <View style={styles.container}>
+      <TouchableOpacity style={styles.expandButton} onPress={toggleView}>
+        <Image
+          style={[
+            styles.expandArrow,
+            {transform: [{rotate: isSummaryExpanded ? '0deg' : '180deg'}]},
+          ]}
+          source={{
+            uri: 'https://icons.veryicon.com/png/o/education-technology/alibaba-cloud-iot-business-department/down-arrow-8.png',
+          }}
+        />
+      </TouchableOpacity>
+      <View
+        style={[styles.summaryView, {height: isSummaryExpanded ? 'auto' : 0}]}>
+        {getSummaryItem('Current Value: ', holdingSummary.totalCurrentValue, {
+          marginTop: 16,
+        })}
+        {getSummaryItem('Total Investment: ', holdingSummary.totalInvestment)}
+        {getSummaryItem(
+          "Today's Profit & Loss: ",
+          holdingSummary.todaysTotalPandL,
+        )}
+        {getSummaryItem('Profit & Loss: ', holdingSummary.totalPandL, {
+          marginTop: 12,
+          marginBottom: 24,
+        })}
       </View>
     </View>
-  </View>
-);
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#efefef',
   },
-  summaryView: {paddingHorizontal: 16},
+  summaryView: {
+    paddingHorizontal: 16,
+  },
   summaryItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -84,6 +78,13 @@ const styles = StyleSheet.create({
   summaryValue: {
     fontSize: 14,
     color: 'black',
+  },
+  expandArrow: {width: 32, height: 32, tintColor: 'rgb(114,20,121)'},
+  expandButton: {
+    height: 32,
+    paddingTop: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 
