@@ -1,4 +1,4 @@
-import {UserHolding} from '../types';
+import {UserHolding} from '../helpers/types';
 
 function create<T>(
   url: string,

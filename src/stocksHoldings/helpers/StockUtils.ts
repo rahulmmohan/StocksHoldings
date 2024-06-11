@@ -1,4 +1,4 @@
-import {ComputedUserHolding, UserHolding} from '../types';
+import {ComputedUserHolding, UserHolding} from './types';
 import currencyFormatter from 'currency-formatter';
 
 export default class StocksUtils {

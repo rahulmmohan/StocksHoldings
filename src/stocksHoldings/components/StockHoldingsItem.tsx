@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {ComputedUserHolding} from '../types';
+import {ComputedUserHolding} from '../helpers/types';
 import StocksUtils from '../helpers/StockUtils';
 
 const StockHoldingsItem = ({item}: {item: ComputedUserHolding}) => (

@@ -7,7 +7,7 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import {SummaryViewProps} from '../types';
+import {SummaryViewProps} from '../helpers/types';
 import StocksUtils from '../helpers/StockUtils';
 
 const StockHoldingsSummary = ({

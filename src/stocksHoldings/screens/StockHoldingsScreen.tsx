@@ -9,7 +9,7 @@ import {
   View,
 } from 'react-native';
 import StocksRepo from '../api/StocksRepo';
-import {ComputedUserHolding} from '../types';
+import {ComputedUserHolding} from '../helpers/types';
 import StockHoldingsItem from '../components/StockHoldingsItem';
 import StocksUtils from '../helpers/StockUtils';
 import StockHoldingsSummary from '../components/StockHoldingsSummary';
