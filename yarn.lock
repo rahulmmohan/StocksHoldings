@@ -2877,6 +2877,7 @@ __metadata:
     "@types/react": ^18.0.24
     "@types/react-test-renderer": ^18.0.0
     babel-jest: ^29.2.1
+    currency-formatter: ^1.5.9
     eslint: ^8.19.0
     jest: ^29.2.1
     metro-react-native-babel-preset: 0.76.7
@@ -2913,6 +2914,13 @@ __metadata:
     mime-types: ~2.1.34
     negotiator: 0.6.3
   checksum: 50c43d32e7b50285ebe84b613ee4a3aa426715a7d131b65b786e2ead0fd76b6b60091b9916d3478a75f11f162628a2139991b6c03ab3f1d9ab7c86075dc8eab4
+  languageName: node
+  linkType: hard
+
+"accounting@npm:^0.4.1":
+  version: 0.4.1
+  resolution: "accounting@npm:0.4.1"
+  checksum: 9132503f6f6a2f2855dc367739cc7f167fc51b37a09422a1a3ac77408d21faa7c741a569f7746eb2323fc10b8a0e15080e5a6f4873469c0a769d6d8dd8b6e24d
   languageName: node
   linkType: hard
 
@@ -3911,6 +3919,17 @@ __metadata:
   version: 3.1.3
   resolution: "csstype@npm:3.1.3"
   checksum: 8db785cc92d259102725b3c694ec0c823f5619a84741b5c7991b8ad135dfaa66093038a1cc63e03361a6cd28d122be48f2106ae72334e067dd619a51f49eddf7
+  languageName: node
+  linkType: hard
+
+"currency-formatter@npm:^1.5.9":
+  version: 1.5.9
+  resolution: "currency-formatter@npm:1.5.9"
+  dependencies:
+    accounting: ^0.4.1
+    locale-currency: 0.0.2
+    object-assign: ^4.1.1
+  checksum: 5342a443e48770c75497b8ef62fb58af779dc6aee5e2839784f2601cd0698d0f371b167007651bb5e47dc078c9e506e2a55f7ede592716a659371ad745cf301a
   languageName: node
   linkType: hard
 
@@ -6574,6 +6593,13 @@ __metadata:
   version: 1.2.4
   resolution: "lines-and-columns@npm:1.2.4"
   checksum: 0c37f9f7fa212b38912b7145e1cd16a5f3cd34d782441c3e6ca653485d326f58b3caccda66efce1c5812bde4961bbde3374fae4b0d11bf1226152337f3894aa5
+  languageName: node
+  linkType: hard
+
+"locale-currency@npm:0.0.2":
+  version: 0.0.2
+  resolution: "locale-currency@npm:0.0.2"
+  checksum: eb8760bdcd60118e1d14a95b6d6d6983073c54bddcc1b661dd88434a2e1ee3477f150693bc8d65205c8dc9b619369afb72222b192e2cd46002c6f4bb05f9bcec
   languageName: node
   linkType: hard
 

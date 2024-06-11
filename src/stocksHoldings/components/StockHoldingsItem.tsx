@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {ComputedUserHolding} from '../types';
+import StocksUtils from '../helpers/StockUtils';
 
 const StockHoldingsItem = ({item}: {item: ComputedUserHolding}) => (
   <View style={styles.item}>
@@ -11,11 +12,15 @@ const StockHoldingsItem = ({item}: {item: ComputedUserHolding}) => (
     <View style={styles.rightContainer}>
       <View style={[styles.valueContainer, {marginBottom: 8}]}>
         <Text style={styles.ltp}>LTP: </Text>
-        <Text style={styles.ltpValue}>{`₹ ${item.ltp}`}</Text>
+        <Text style={styles.ltpValue}>
+          {StocksUtils.getFormattedAmount(item.ltp)}
+        </Text>
       </View>
       <View style={styles.valueContainer}>
         <Text style={styles.ltp}>P/L: </Text>
-        <Text style={styles.ltpValue}>{`₹ ${item.pAndL}`}</Text>
+        <Text style={styles.ltpValue}>
+          {StocksUtils.getFormattedAmount(item.pAndL)}
+        </Text>
       </View>
     </View>
   </View>

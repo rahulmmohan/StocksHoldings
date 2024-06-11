@@ -8,6 +8,7 @@ import {
   ViewStyle,
 } from 'react-native';
 import {SummaryViewProps} from '../types';
+import StocksUtils from '../helpers/StockUtils';
 
 const StockHoldingsSummary = ({
   holdingSummary,
@@ -22,7 +23,9 @@ const StockHoldingsSummary = ({
     return (
       <View style={[styles.summaryItem, style]}>
         <Text style={styles.summaryTitle}>{title}</Text>
-        <Text style={styles.summaryValue}>{`₹ ${value}`}</Text>
+        <Text style={styles.summaryValue}>
+          {StocksUtils.getFormattedAmount(value)}
+        </Text>
       </View>
     );
   };
@@ -41,9 +44,7 @@ const StockHoldingsSummary = ({
       </TouchableOpacity>
       <View
         style={[styles.summaryView, {height: isSummaryExpanded ? 'auto' : 0}]}>
-        {getSummaryItem('Current Value: ', holdingSummary.totalCurrentValue, {
-          marginTop: 16,
-        })}
+        {getSummaryItem('Current Value: ', holdingSummary.totalCurrentValue)}
         {getSummaryItem('Total Investment: ', holdingSummary.totalInvestment)}
         {getSummaryItem(
           "Today's Profit & Loss: ",
@@ -81,8 +82,8 @@ const styles = StyleSheet.create({
   },
   expandArrow: {width: 32, height: 32, tintColor: 'rgb(114,20,121)'},
   expandButton: {
-    height: 32,
-    paddingVertical: 12,
+    height: 48,
+    paddingVertical: 16,
     alignItems: 'center',
     justifyContent: 'center',
   },

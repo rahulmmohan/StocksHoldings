@@ -1,4 +1,5 @@
 import {ComputedUserHolding, UserHolding} from '../types';
+import currencyFormatter from 'currency-formatter';
 
 export default class StocksUtils {
   static calculatePandL = (
@@ -9,11 +10,11 @@ export default class StocksUtils {
   };
 
   static calculateCurrentValue = (ltp: number, quantity: number): number => {
-    return Number((ltp * quantity).toFixed(2));
+    return ltp * quantity;
   };
 
   static calculateInvestmentValue = (avg: number, quantity: number): number => {
-    return Number((avg * quantity).toFixed(2));
+    return avg * quantity;
   };
 
   static calculateTodayPandL = (
@@ -67,5 +68,13 @@ export default class StocksUtils {
       todaysTotalPandL,
       totalCurrentValue,
     };
+  };
+
+  static getFormattedAmount = (amount: number): string => {
+    const formattedAmount = currencyFormatter.format(amount, {
+      symbol: '₹ ',
+      decimalSeparator: 2,
+    });
+    return formattedAmount;
   };
 }
